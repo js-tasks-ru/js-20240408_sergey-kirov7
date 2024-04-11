@@ -8,7 +8,7 @@ export const omit = (obj, ...fields) => {
     const entries = Object.entries(obj);
     const res = {};
 
-    entries.map(item => {
+    entries.forEach(item => {
         const [key, value] = item;
 
         if (!fields.includes(key)) {
