@@ -5,5 +5,16 @@
  * @returns {object} - returns the new object
  */
 export const pick = (obj, ...fields) => {
+    const entries = Object.entries(obj);
+    const res = {};
 
+    entries.map(item => {
+        const [key, value] = item;
+
+        if (fields.includes(key)) {
+           res[key] = value;
+        }
+    });
+
+    return res;
 };
