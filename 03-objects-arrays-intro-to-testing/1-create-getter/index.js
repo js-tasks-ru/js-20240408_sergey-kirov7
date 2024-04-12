@@ -4,13 +4,13 @@
  * @returns {function} - function-getter which allow get value from object by set path
  */
 export function createGetter(path) {
+  const keys = path.split('.');
   const getter = (obj) => {
-    const keys = path.split('.');
     const entries = Object.entries(obj);
     let res = obj;
 
     if (Object.keys(obj).length === 0) {
-      return undefined;
+      return;
     }
 
     keys.forEach(item => {
@@ -22,7 +22,7 @@ export function createGetter(path) {
     } else if (res === null) {
       return null;
     } else {
-      return undefined;
+      return;
     }
   };
 
