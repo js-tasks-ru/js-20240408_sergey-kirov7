@@ -4,15 +4,15 @@
  * @returns {*[]} - the new array with uniq values
  */
 export function uniq(arr) {
-  const res = [];
+  const res = new Map();
 
   if (!arr) {return [];}
 
   arr.forEach(item => {
-    if (!res.includes(item)) {
-      res.push(item);
+    if (!res.has(item)) {
+      res.set(item, item);
     }
   });
 
-  return res;
+  return Array.from(res.keys());
 }
