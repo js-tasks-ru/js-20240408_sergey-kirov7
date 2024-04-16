@@ -5,27 +5,22 @@
  * @returns {string} - the new string without extra symbols according passed size
  */
 export function trimSymbols(string, size) {
-  const strToArr = (str) => {
-    const simbArr = [...str];
-    const res = [];
-    let resItem = [];
-      
-    simbArr.forEach((item) => {
-      if (resItem.length === 0 || resItem.includes(item)) {
-        resItem.push(item);
-      } else {
-        res.push(resItem);
-        resItem = [];
-        resItem.push(item);
-      }
-    });
+  let acc = '';
+  let result = '';
 
-    res.push(resItem);
+  for (const letter of string) {
+    let lastLetter = acc[acc.length - 1];
+    let mustCut = acc.length === size;
 
-    return res;
-  };
+    if (lastLetter && (letter != lastLetter)) {
+      result += acc;
+      acc = letter;
+    } else {
+      acc = mustCut ? acc : acc + letter;
+    }
+  }
 
-  const result = strToArr(string).map(item => item.join('').slice(0, size));
+  result += acc;
 
-  return result.join('');
+  return result;
 }
