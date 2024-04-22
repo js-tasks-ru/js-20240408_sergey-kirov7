@@ -46,13 +46,13 @@ export default class ColumnChart {
     }
 
     createChartBodyTemplate() {
-        return this.getColumnProps().map(({ value, percent }) => {
-            `<div style="--value: ${value}" data-tooltip="${percent}"></div>`
-        }).join('');
+      return this.getColumnProps().map(({ value, percent }) => {
+        return `<div style="--value: ${value}" data-tooltip="${percent}"></div>`;
+      }).join('');
     }
 
     createChartClasses() {
-        return this.data.lenght ? 'column-chart' : 'column-chart column-chart_loading';
+      return this.data.lenght ? 'column-chart' : 'column-chart column-chart_loading';
     }
 
     createTemplate() {
@@ -72,15 +72,15 @@ export default class ColumnChart {
     }
 
     update(newData) {
-        this.data = newData;
-        this.element.querySelector('[data-element="body"]').innerHTML = this.createChartBodyTemplate();
+      this.data = newData;
+      this.element.querySelector('[data-element="body"]').innerHTML = this.createChartBodyTemplate();
     }
     
     remove() {
-        this.element.remove();
+      this.element.remove();
     }
 
     destroy() {
-        this.remove();
+      this.remove();
     }
 }
