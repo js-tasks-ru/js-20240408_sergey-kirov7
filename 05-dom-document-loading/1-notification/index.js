@@ -3,8 +3,8 @@ export default class NotificationMessage {
     element;
     timerID;
     constructor(message, {
-        duration,
-        type,
+      duration,
+      type,
     } = {}) {
       this.duration = duration;
       this.message = message;
@@ -21,7 +21,7 @@ export default class NotificationMessage {
     }
 
     createTemplate() {
-        return (`
+      return (`
             <div class="notification ${this.type}" style="--value:20s">
                 <div class="timer"></div>
                 <div class="inner-wrapper">
@@ -33,20 +33,19 @@ export default class NotificationMessage {
             </div>`);
     }
 
-    show(outerElem = this.element) {
-        if (NotificationMessage.lastShownComponent) {
-            if (NotificationMessage.lastShownComponent.timerID) {
-                NotificationMessage.lastShownComponent.destroy();
-            }
-            this.remove()
+    show(container = document.body) {
+      if (NotificationMessage.lastShownComponent) {
+        if (NotificationMessage.lastShownComponent.timerID) {
+          NotificationMessage.lastShownComponent.destroy();
         }
-        NotificationMessage.lastShownComponent = this;
+      }
+      NotificationMessage.lastShownComponent = this;
 
-        document.getElementById('btn1').after(outerElem);
+      container.appendChild(this.element);
 
-        this.timerID = setTimeout(() => {
-            this.remove();
-        }, this.duration)
+      this.timerID = setTimeout(() => {
+        this.remove();
+      }, this.duration);
     }
     
     remove() {
